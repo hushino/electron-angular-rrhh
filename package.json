@@ -1,0 +1,45 @@
+{
+  "name": "rrhh-legajo",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "publish": "electron-builder --win -p always",
+    "release": "build"
+  },
+  "keywords": [
+    "Electron",
+    "quick"
+  ],
+  "author": "IVAN ESTEBAN NESTERUK",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "@sentry/browser": "^5.7.1",
+    "@sentry/node": "^5.7.1",
+    "electron-updater": "^4.2.0",
+    "node-notifier": "^6.0.0"
+  },
+  "devDependencies": {
+    "electron": "^7.1.0",
+    "electron-builder": "22.1.0"
+  },
+  "build": {
+    "appId": "rrhh.redmagic",
+    "directories": {
+      "buildResources": "public"
+    },
+    "extends": null,
+    "win": {
+      "publish": [
+        "github"
+      ]
+    },
+    "mac": {
+      "category": "rrhh.app.gestion.web"
+    }
+  }
+}
