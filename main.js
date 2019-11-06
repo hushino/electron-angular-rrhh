@@ -3,6 +3,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path');
 const Sentry = require('@sentry/node');
 const { autoUpdater } = require("electron-updater");
+const log = require("electron-log")
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -11,15 +12,15 @@ const notifier = require('node-notifier');
 autoUpdater.logger = log
 log.transports.file.level = "debug"
 autoUpdater.logger.transports.file.level = 'info';
-autoUpdater.on('checking-for-update', () => {})
-autoUpdater.on('update-available', (info) => {})
-autoUpdater.on('update-not-available', (info) => {})
-autoUpdater.on('error', (err) => {})
+autoUpdater.on('checking-for-update', () => { })
+autoUpdater.on('update-available', (info) => { })
+autoUpdater.on('update-not-available', (info) => { })
+autoUpdater.on('error', (err) => { })
 autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
- })
+})
 autoUpdater.on('update-downloaded', (info) => {
   // Object
   notifier.notify({
