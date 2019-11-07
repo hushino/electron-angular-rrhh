@@ -20,9 +20,7 @@
   "dependencies": {
     "@sentry/browser": "^5.7.1",
     "@sentry/node": "^5.7.1",
-    "electron-updater": "^4.2.0",
-    "electron-log": "3.0.8",
-    "node-notifier": "^6.0.0"
+    "electron-updater": "^4.2.0"
   },
   "devDependencies": {
     "electron": "^7.1.0",

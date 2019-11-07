@@ -3,31 +3,11 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path');
 const Sentry = require('@sentry/node');
 const { autoUpdater } = require("electron-updater");
-const log = require("electron-log")
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-const notifier = require('node-notifier');
-autoUpdater.logger = log
-log.transports.file.level = "debug"
-autoUpdater.logger.transports.file.level = 'info';
-autoUpdater.on('checking-for-update', () => { })
-autoUpdater.on('update-available', (info) => { })
-autoUpdater.on('update-not-available', (info) => { })
-autoUpdater.on('error', (err) => { })
-autoUpdater.on('download-progress', (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
-  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-})
-autoUpdater.on('update-downloaded', (info) => {
-  // Object
-  notifier.notify({
-    title: 'RRHH-LEGAJO-ACTUALIZACION',
-    message: 'Actualizacion descargada, Reinicia la aplicacion para instalarla automaticamente.'
-  });
-});
+
 function createWindow() {
   Sentry.init({ dsn: 'https://8839572e21fe429bb5f080d732e169af@sentry.io/1776203' });
 
@@ -39,10 +19,10 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  autoUpdater.checkForUpdatesAndNotify()
+  autoUpdater.checkForUpdatesAndNotify();
   // and load the index.html of the app.
   //mainWindow.loadFile('index.html')
-  mainWindow.loadURL('http://localhost:8080/')
+  mainWindow.loadURL('http://localhost:8080/');
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
